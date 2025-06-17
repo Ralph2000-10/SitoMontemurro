@@ -1,0 +1,94 @@
+/* ====  GLOBAL  ==== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;               /* sidebar + main in one flex row   */
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* ====  SIDEBAR  ==== */
+.sidebar {
+  width: 200px;
+  background: #111;            /* near‑black */
+  color: #fff;
+  padding: 1rem;
+  overflow-y: auto;            /* its own scrollbar, like screenshot */
+}
+
+.sidebar h1 {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 0.75rem;
+}
+
+.sidebar nav li {
+  margin: 0.25rem 0;
+}
+
+.sidebar a {
+  color: #00ff00;              /* bright green links */
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.section‑title {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+  font-weight: bold;
+}
+
+.sidebar hr {
+  border: none;
+  border-top: 1px solid #555;
+  margin: 0.75rem 0;
+}
+
+/* ====  MAIN CONTENT  ==== */
+.content {
+  flex: 1;                     /* take remaining width */
+  background: cyan;
+  padding: 0 1.5rem 2rem;
+}
+
+.content h2 {
+  text-align: center;
+  margin-top: 0.6rem;
+  font-size: 2.5rem;
+}
+
+.content h3 {
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 0.5rem 0;
+}
+
+.content hr {
+  border: none;
+  border-top: 3px solid #b8ffff;  /* thin light line, like screenshot */
+  margin: 1rem 0;
+}
+
+.content p,
+.content li {
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.content ul {
+  margin-left: 2rem;
+}
