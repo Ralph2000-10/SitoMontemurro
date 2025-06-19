@@ -7,7 +7,7 @@ body {
   margin: 0;
   display: flex;               /* sidebar + main in one flex row   */
   min-height: 100vh;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Times New Roman";
 }
 
 /* ====  SIDEBAR  ==== */
