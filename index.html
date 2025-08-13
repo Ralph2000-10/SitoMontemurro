@@ -108,10 +108,7 @@
 <!-- Detect if we’re in PWA mode and enable hamburger menu functionality -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-  const isPWA = window.matchMedia('(display-mode: standalone)').matches 
-             || window.navigator.standalone === true;
-
-  if (isPWA) {
+  function enablePWAMode() {
     document.body.classList.add('pwa-mode');
 
     const menuToggle = document.getElementById("menu-toggle");
@@ -121,9 +118,20 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.classList.toggle("open");
     });
   }
+
+  // Detect on load
+  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+    enablePWAMode();
+  }
+
+  // Detect if display mode changes (important for Android)
+  window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
+    if (e.matches) {
+      enablePWAMode();
+    }
+  });
 });
 </script>
-
 
 </body>
 </html>

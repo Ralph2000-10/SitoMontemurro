@@ -1,0 +1,1 @@
+In genere se qualcuno visita in mio sito almeno due volte in 2 gg diversi, compare il popup che chiede di installare la PWA (a me è comparso anche alla prima visita, ma solo una volta). Per non aspettare 2 gg occorre cliccare sui 3 puntini in alto e aggiungere alla Home: qui chiede o di installare la PWA o di creare una scorciatoia).
