@@ -7,6 +7,14 @@
 </head>
 
 <body>
+<!-- Registo service worker per trasformare sito web in una PWA (Progressive Web App) -->
+ <script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+    navigator.serviceWorker.register('sw.js')
+  }
+</script>
+
+
   <!--  SIDE‑BAR  -->
   <aside class="sidebar">
     <h1>Archivio<br />Didattico</h1>
