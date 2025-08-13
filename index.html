@@ -4,17 +4,12 @@
   <meta charset="UTF-8" />
   <title>Archivio Didattico – Introduzione</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Aggiungo manifest.json per la PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d6efd">
 </head>
 
 <body>
-<!-- Registo service worker per trasformare sito web in una PWA (Progressive Web App) -->
- <script>
-  if (typeof navigator.serviceWorker !== 'undefined') {
-    navigator.serviceWorker.register('sw.js')
-  }
-</script>
-
-
   <!--  SIDE‑BAR  -->
   <aside class="sidebar">
     <h1>Archivio<br />Didattico</h1>
@@ -97,5 +92,15 @@
       </ul> -->
     </section>
   </main>
+
+  <!-- Registo service worker per trasformare sito web in una PWA (Progressive Web App) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
+
 </body>
 </html>
