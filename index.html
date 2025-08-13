@@ -10,6 +10,9 @@
 </head>
 
 <body>
+  <!-- Hamburger button (hidden by default) -->
+  <button id="menu-toggle" class="hamburger">☰</button>
+
   <!--  SIDE‑BAR  -->
   <aside class="sidebar">
     <h1>Archivio<br />Didattico</h1>
@@ -101,6 +104,26 @@
   });
 }
 </script>
+
+<!-- Detect if we’re in PWA mode and enable hamburger menu functionality -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const isPWA = window.matchMedia('(display-mode: standalone)').matches 
+             || window.navigator.standalone === true;
+
+  if (isPWA) {
+    document.body.classList.add('pwa-mode');
+
+    const menuToggle = document.getElementById("menu-toggle");
+    const sidebar = document.querySelector(".sidebar");
+
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+    });
+  }
+});
+</script>
+
 
 </body>
 </html>

@@ -145,3 +145,39 @@ body {
 .lezioni‑table td.dl           { text-align: center; white-space: nowrap; }
 .lezioni‑table td.dl a         { color: #0000cc; }
 .lezioni‑table td.missing      { color: #aa0000; font-weight: bold; }
+
+/* PWA mode initial layout */
+body.pwa-mode .sidebar {
+  position: fixed;
+  left: -250px; /* hidden off-screen */
+  top: 0;
+  height: 100%;
+  width: 250px;
+  background-color: black;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+body.pwa-mode .sidebar.open {
+  left: 0; /* slide into view */
+}
+body.pwa-mode .content {
+  margin-left: 0; /* no static space for sidebar */
+}
+
+/* Hamburger button */
+.hamburger {
+  display: none; /* not visible by default */
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  padding: 10px;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1100;
+  cursor: pointer;
+}
+body.pwa-mode .hamburger {
+  display: block; /* show in PWA mode */
+}
