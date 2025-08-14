@@ -2,56 +2,52 @@
 * {
   box-sizing: border-box;
 }
-
-body {
+html, body {
   margin: 0;
-  display: flex;               /* sidebar + main in one flex row   */
+  padding: 0;
+  height: 100%;
+}
+body {
+  display: flex; /* sidebar + main in one flex row */
+  font-family: "Times New Roman", serif;
   min-height: 100vh;
-  font-family: "Times New Roman";
 }
 
 /* ====  SIDEBAR  ==== */
 .sidebar {
-  width: 200px;
-  background: #111;            /* near‑black */
+  width: 250px;
+  background: #111;
   color: #fff;
   padding: 1rem;
-  overflow-y: auto;            /* its own scrollbar, like screenshot */
+  overflow-y: auto;
 }
-
 .sidebar h1 {
   margin: 0 0 1rem;
   font-size: 2rem;
   line-height: 1.1;
   text-align: center;
 }
-
 .sidebar nav ul {
   list-style: none;
   padding-left: 0;
   margin: 0 0 0.75rem;
 }
-
 .sidebar nav li {
   margin: 0.25rem 0;
 }
-
 .sidebar a {
-  color: #00ff00;              /* bright green links */
+  color: #00ff00;
   text-decoration: none;
   font-size: 1rem;
 }
-
 .sidebar a:hover {
   text-decoration: underline;
 }
-
-.section‑title {
+.section-title {
   display: block;
   margin: 0.5rem 0 0.25rem;
   font-weight: bold;
 }
-
 .sidebar hr {
   border: none;
   border-top: 1px solid #555;
@@ -60,106 +56,35 @@ body {
 
 /* ====  MAIN CONTENT  ==== */
 .content {
-  flex: 1;                     /* take remaining width */
+  flex: 1;
   background: cyan;
   padding: 0 1.5rem 2rem;
 }
-
 .content h2 {
   text-align: center;
   margin-top: 0.6rem;
   font-size: 2.5rem;
 }
-
 .content h3 {
   text-align: center;
   font-size: 1.7rem;
   margin: 0.5rem 0;
 }
-
 .content hr {
   border: none;
-  border-top: 3px solid #b8ffff;  /* thin light line, like screenshot */
+  border-top: 3px solid #b8ffff;
   margin: 1rem 0;
 }
-
 .content p,
 .content li {
   font-size: 1.1rem;
   line-height: 1.45;
 }
-
 .content ul {
   margin-left: 2rem;
 }
 
-/* ====  TOP‑OF‑PAGE QUICK LINKS  ======================================= */
-.toc          { margin: .3rem 0 0 1rem; }
-.toc li       { font-size: 1rem; }
-.toc a        { color: #0000cc; }
-
-/* ====  INFO TABLE (“Scheda di presentazione”) ========================= */
-.info‑table {
-  border-collapse: collapse;
-  margin: .5rem auto;
-  font-size: .95rem;
-}
-.info‑table th,
-.info‑table td {
-  border: 1px solid #008b8b;
-  padding: .3rem .5rem;
-  text-align: left;
-}
-.info‑table th { background: rgba(0, 0, 0, .07); }
-
-/* ====  BOXED LINKS (“Burocrazia”, “Book”)  ============================ */
-.boxed‑link‑group        { text-align: center; }
-.boxed‑link {
-  display: inline-block;
-  margin: .25rem;
-  padding: .25rem .55rem;
-  border: 1px solid #006666;
-  background: rgba(255,255,255,.25);
-  font-size: .9rem;
-  text-decoration: none;
-  color: #000;
-}
-.boxed‑link:hover { background: rgba(255,255,255,.5); }
-
-/* ====  LEZIONI TABLE  (NEW) =========================================== */
-.table‑wrapper          { overflow-x: auto; }
-.lezioni‑table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: .9rem;
-}
-.lezioni‑table th,
-.lezioni‑table td  {
-  border: 1px solid #008b8b;
-  padding: .35rem .4rem;
-  vertical-align: top;
-}
-.lezioni‑table thead th {
-  background: rgba(0,0,0,.07);
-}
-.lezioni‑table td.dl           { text-align: center; white-space: nowrap; }
-.lezioni‑table td.dl a         { color: #0000cc; }
-.lezioni‑table td.missing      { color: #aa0000; font-weight: bold; }
-
-/* Default website layout */
-.sidebar {
-  width: 250px;
-  background-color: black;
-  float: left;
-  height: 100vh;
-  color: white;
-}
-.content {
-  margin-left: 250px;
-  padding: 16px;
-}
-
-/* Hamburger button - hidden on desktop */
+/* Hamburger - hidden on desktop */
 .hamburger {
   display: none;
 }
@@ -168,24 +93,13 @@ body {
    PWA MODE (mobile)
    ======================== */
 body.pwa-mode {
-  font-size: 18px; /* Larger text for mobile */
+  flex-direction: column;
+  font-size: 16px; /* slightly smaller so it fits without zoom */
   line-height: 1.5;
 }
-
-body.pwa-mode h1 {
-  font-size: 26px;
-}
-body.pwa-mode h2 {
-  font-size: 22px;
-}
-body.pwa-mode h3 {
-  font-size: 20px;
-}
-
-/* Show hamburger in PWA mode */
 body.pwa-mode .hamburger {
   display: block;
-  font-size: 32px;      /* Bigger touch target */
+  font-size: 32px;
   padding: 12px 16px;
   background: none;
   border: none;
@@ -196,29 +110,28 @@ body.pwa-mode .hamburger {
   z-index: 1100;
   cursor: pointer;
 }
-
-/* Sidebar in PWA mode - hidden by default */
+/* Sidebar in PWA mode */
 body.pwa-mode .sidebar {
   position: fixed;
-  left: -250px; /* Hidden off screen */
+  left: -250px;
   top: 0;
-  height: 100%;
+  bottom: 0;
   width: 250px;
   background-color: black;
   transition: left 0.3s ease;
   z-index: 1000;
+  overflow-y: auto;
 }
 body.pwa-mode .sidebar.open {
-  left: 0; /* Slide into view */
+  left: 0;
 }
-
-/* Content takes full width in PWA mode */
+/* Content fills the screen */
 body.pwa-mode .content {
   margin-left: 0;
   padding: 16px;
+  flex: 1;
+  overflow-y: auto;
 }
-
-/* Sidebar link adjustments for touch */
 body.pwa-mode .sidebar a {
   display: block;
   padding: 12px 16px;

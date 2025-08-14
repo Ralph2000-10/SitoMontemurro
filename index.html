@@ -106,33 +106,7 @@
 }
 </script>
 
-<!-- Detect if we’re in PWA mode and enable hamburger menu functionality -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  function enablePWAMode() {
-    document.body.classList.add('pwa-mode');
-
-    const menuToggle = document.getElementById("menu-toggle");
-    const sidebar = document.querySelector(".sidebar");
-
-    menuToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
-    });
-  }
-
-  // Detect on load
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-    enablePWAMode();
-  }
-
-  // Detect if display mode changes (important for Android)
-  window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
-    if (e.matches) {
-      enablePWAMode();
-    }
-  });
-});
-</script>
+<script src="layout.js"></script>
 
 </body>
 </html>
