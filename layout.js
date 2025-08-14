@@ -7,11 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.getElementById("menu-toggle");
     const sidebar = document.querySelector(".sidebar");
 
-    if (menuToggle && sidebar) {
-      menuToggle.addEventListener("click", () => {
-        sidebar.classList.toggle("open");
-      });
-    }
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+    });
   }
 
   if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
@@ -19,6 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   window.matchMedia('(display-mode: standalone)').addEventListener('change', (e) => {
-    if (e.matches) enablePWAMode();
+    if (e.matches) {
+      enablePWAMode();
+    }
   });
 });
+

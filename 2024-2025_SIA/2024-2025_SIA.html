@@ -266,14 +266,14 @@
 
   <!-- Register service worker -->
 <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./sw.js");
-    });
-  }
-</script>
-
-  <script src="layout.js"></script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("../sw.js");
+      });
+    }
+  </script>
+  
+  <script src="../layout.js"></script>
 
 </body>
 </html>
