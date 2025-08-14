@@ -1,40 +1,35 @@
-// ===== Service Worker Registration =====
+// Register service worker
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("sw.js")
-      .catch(err => console.error("SW registration failed:", err));
+    navigator.serviceWorker.register("/sw.js");
   });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  function isPWAMode() {
-    return window.matchMedia("(display-mode: standalone)").matches
-      || window.navigator.standalone === true;
-  }
-
   function enablePWAMode() {
-    document.body.classList.add("pwa-mode");
+    document.body.classList.add("pwa-mode", "has-header");
 
-    // ===== Create header bar ONLY in PWA mode =====
+    // Create header bar dynamically so it only exists in PWA
     const headerBar = document.createElement("div");
-    headerBar.className = "header-bar";
+    headerBar.classList.add("header-bar");
 
-    // Hamburger button
+    // Create hamburger button
     const menuToggle = document.createElement("button");
     menuToggle.id = "menu-toggle";
-    menuToggle.className = "hamburger";
-    menuToggle.textContent = "☰";
+    menuToggle.classList.add("hamburger");
+    menuToggle.innerHTML = "&#9776;"; // three lines
 
-    // Title text
-    const title = document.createElement("span");
-    title.className = "header-title";
+    // Create title
+    const title = document.createElement("div");
+    title.classList.add("header-title");
     title.textContent = "Montemurro";
 
+    // Add to header
     headerBar.appendChild(menuToggle);
     headerBar.appendChild(title);
 
+    // Insert at top of body
     document.body.insertBefore(headerBar, document.body.firstChild);
-    document.body.classList.add("has-header");
 
     // Sidebar toggle
     const sidebar = document.querySelector(".sidebar");
@@ -43,12 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Run only if we are in PWA mode
-  if (isPWAMode()) {
+  // Detect PWA mode
+  if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
     enablePWAMode();
   }
 
-  // Detect change to standalone mode
   window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
     if (e.matches) {
       enablePWAMode();

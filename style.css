@@ -109,12 +109,12 @@ body.pwa-mode .header-bar {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* keeps text on right */
   padding: 0 16px;
   z-index: 1200;
 }
 
-/* Hamburger in header (PWA) */
+/* Hamburger inside header */
 body.pwa-mode .header-bar .hamburger {
   font-size: 28px;
   background: none;
@@ -123,7 +123,7 @@ body.pwa-mode .header-bar .hamburger {
   cursor: pointer;
 }
 
-/* Header title in PWA */
+/* Title */
 body.pwa-mode .header-title {
   font-size: 20px;
   font-weight: bold;
@@ -132,39 +132,4 @@ body.pwa-mode .header-title {
 /* Push content down so it doesn't hide under header */
 body.pwa-mode.has-header {
   padding-top: 50px;
-}
-
-/* Sidebar in PWA mode */
-body.pwa-mode .sidebar {
-  position: fixed;
-  left: -250px;
-  top: 0;
-  bottom: 0;
-  width: 250px;
-  background-color: black;
-  transition: left 0.3s ease;
-  z-index: 1000;
-  overflow-y: auto;
-}
-body.pwa-mode .sidebar.open {
-  left: 0;
-}
-
-/* Content fills the screen in PWA */
-body.pwa-mode .content {
-  margin-left: 0;
-  padding: 16px;
-  flex: 1;
-  overflow-y: auto;
-}
-
-/* Links in PWA sidebar */
-body.pwa-mode .sidebar a {
-  display: block;
-  padding: 12px 16px;
-  color: white;
-  text-decoration: none;
-}
-body.pwa-mode .sidebar a:hover {
-  background-color: #333;
 }
