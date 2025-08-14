@@ -89,6 +89,37 @@ body {
   display: none;
 }
 
+/* ===== Sticky Header ===== */
+.header-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1200;
+}
+
+/* Hamburger inside header */
+.header-bar .hamburger {
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Push page content down so it doesn't hide under header */
+body.has-header {
+  padding-top: 50px;
+}
+
+
 /* ========================
    PWA MODE (mobile)
    ======================== */

@@ -6,10 +6,8 @@ if ("serviceWorker" in navigator) {
   });
 }
 
-// ===== DOM Ready =====
 document.addEventListener("DOMContentLoaded", () => {
-
-  // 1. Ensure proper viewport meta tag
+  // Ensure viewport meta exists
   if (!document.querySelector('meta[name="viewport"]')) {
     const viewportMeta = document.createElement("meta");
     viewportMeta.name = "viewport";
@@ -17,26 +15,33 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(viewportMeta);
   }
 
-  // 2. Ensure hamburger button exists
-  let menuToggle = document.getElementById("menu-toggle");
-  if (!menuToggle) {
-    menuToggle = document.createElement("button");
+  // ===== Create header bar if missing =====
+  let headerBar = document.querySelector(".header-bar");
+  if (!headerBar) {
+    headerBar = document.createElement("div");
+    headerBar.className = "header-bar";
+
+    // Hamburger button
+    const menuToggle = document.createElement("button");
     menuToggle.id = "menu-toggle";
     menuToggle.className = "hamburger";
     menuToggle.textContent = "☰";
-    document.body.insertBefore(menuToggle, document.body.firstChild);
+
+    // Title text
+    const title = document.createElement("div");
+    title.textContent = "Montemurro";
+
+    headerBar.appendChild(menuToggle);
+    headerBar.appendChild(title);
+
+    document.body.insertBefore(headerBar, document.body.firstChild);
+    document.body.classList.add("has-header");
   }
 
-  // 3. Ensure sidebar exists
-  let sidebar = document.querySelector(".sidebar");
-  if (!sidebar) {
-    sidebar = document.createElement("aside");
-    sidebar.className = "sidebar";
-    sidebar.innerHTML = "<h1>Menu</h1>";
-    document.body.insertBefore(sidebar, document.querySelector(".content") || null);
-  }
+  const menuToggle = document.getElementById("menu-toggle");
+  const sidebar = document.querySelector(".sidebar");
 
-  // 4. Enable PWA Mode (mobile layout)
+  // ===== PWA mode adjustments =====
   function enablePWAMode() {
     document.body.classList.add("pwa-mode");
     menuToggle.addEventListener("click", () => {
@@ -44,12 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Detect PWA mode immediately
   if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
     enablePWAMode();
   }
 
-  // Also detect mode changes (important for Android)
   window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
     if (e.matches) {
       enablePWAMode();
