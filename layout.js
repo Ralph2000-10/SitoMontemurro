@@ -1,4 +1,14 @@
 // layout.js
+
+// Registo service worker per trasformare sito web in una PWA (Progressive Web App)
+<script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("../sw.js");
+      });
+    }
+</script>
+
 // Detect if we’re in PWA mode and enable hamburger menu functionality
 document.addEventListener("DOMContentLoaded", () => {
   function enablePWAMode() {
