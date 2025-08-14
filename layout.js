@@ -7,19 +7,16 @@ if ("serviceWorker" in navigator) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Ensure viewport meta exists
-  if (!document.querySelector('meta[name="viewport"]')) {
-    const viewportMeta = document.createElement("meta");
-    viewportMeta.name = "viewport";
-    viewportMeta.content = "width=device-width, initial-scale=1.0";
-    document.head.appendChild(viewportMeta);
+  function isPWAMode() {
+    return window.matchMedia("(display-mode: standalone)").matches
+      || window.navigator.standalone === true;
   }
 
   function enablePWAMode() {
     document.body.classList.add("pwa-mode");
 
     // ===== Create header bar ONLY in PWA mode =====
-    let headerBar = document.createElement("div");
+    const headerBar = document.createElement("div");
     headerBar.className = "header-bar";
 
     // Hamburger button
@@ -29,7 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.textContent = "☰";
 
     // Title text
-    const title = document.createElement("div");
+    const title = document.createElement("span");
+    title.className = "header-title";
     title.textContent = "Montemurro";
 
     headerBar.appendChild(menuToggle);
@@ -38,18 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.insertBefore(headerBar, document.body.firstChild);
     document.body.classList.add("has-header");
 
-    // ===== Sidebar toggle =====
+    // Sidebar toggle
     const sidebar = document.querySelector(".sidebar");
     menuToggle.addEventListener("click", () => {
       sidebar.classList.toggle("open");
     });
   }
 
-  // Detect PWA mode
-  if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
+  // Run only if we are in PWA mode
+  if (isPWAMode()) {
     enablePWAMode();
   }
 
+  // Detect change to standalone mode
   window.matchMedia("(display-mode: standalone)").addEventListener("change", (e) => {
     if (e.matches) {
       enablePWAMode();
