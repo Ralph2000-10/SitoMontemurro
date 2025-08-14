@@ -3,7 +3,7 @@
 // Registo service worker per trasformare sito web in una PWA (Progressive Web App)
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("../sw.js");
+        navigator.serviceWorker.register("sw.js");
       });
     }
 
