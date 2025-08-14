@@ -15,10 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.head.appendChild(viewportMeta);
   }
 
-  // ===== Create header bar if missing =====
-  let headerBar = document.querySelector(".header-bar");
-  if (!headerBar) {
-    headerBar = document.createElement("div");
+  function enablePWAMode() {
+    document.body.classList.add("pwa-mode");
+
+    // ===== Create header bar ONLY in PWA mode =====
+    let headerBar = document.createElement("div");
     headerBar.className = "header-bar";
 
     // Hamburger button
@@ -36,19 +37,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.insertBefore(headerBar, document.body.firstChild);
     document.body.classList.add("has-header");
-  }
 
-  const menuToggle = document.getElementById("menu-toggle");
-  const sidebar = document.querySelector(".sidebar");
-
-  // ===== PWA mode adjustments =====
-  function enablePWAMode() {
-    document.body.classList.add("pwa-mode");
+    // ===== Sidebar toggle =====
+    const sidebar = document.querySelector(".sidebar");
     menuToggle.addEventListener("click", () => {
       sidebar.classList.toggle("open");
     });
   }
 
+  // Detect PWA mode
   if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
     enablePWAMode();
   }
