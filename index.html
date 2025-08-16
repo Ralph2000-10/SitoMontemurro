@@ -2,7 +2,6 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archivio Didattico – Introduzione</title>
   <link rel="stylesheet" href="style.css" />
   <!-- Aggiungo manifest.json per la PWA -->
@@ -11,9 +10,6 @@
 </head>
 
 <body>
-  <!-- Hamburger button (hidden by default) -->
-  <!-- <button id="menu-toggle" class="hamburger">☰</button> -->
-
   <!--  SIDE‑BAR  -->
   <aside class="sidebar">
     <h1>Archivio<br />Didattico</h1>
@@ -97,7 +93,14 @@
     </section>
   </main>
 
-<script src="layout.js"></script>
+  <!-- Registo service worker per trasformare sito web in una PWA (Progressive Web App) -->
+  <script>
+    if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
 
 </body>
 </html>
