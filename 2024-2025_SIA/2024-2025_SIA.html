@@ -2,15 +2,20 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
+  <!-- Aggiungo manifest.json per la PWA -->
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#0d6efd">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sistemi informativi aziendali – 2024/2025</title>
   <link rel="stylesheet" href="../style.css" />             <!-- ../ significa la cartella di livello superiore a quella corrente -->
 </head>
 
 <body>
+  <!-- Hamburger button (only on mobile) -->
+  <button class="hamburger" id="hamburger">&#9776;</button>
 
 <!--  SIDE‑BAR  -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
     <h1>Archivio<br />Didattico</h1>
 
     <nav>
@@ -52,7 +57,7 @@
 
 <!-- ==========  MAIN AREA  ========== -->
   <main class="content">
-    <h2>Sistemi Informativi Aziendali ‑ 2024/2025</h2>
+    <h2>Sistemi Informativi Aziendali – <span class="mobile-break">2024/2025</span></h2>  <!-- vai a capo su dispositivi mobili -->
 
     <!-- top‑of‑page quick links -->
     <!-- <ul class="toc">
@@ -262,5 +267,17 @@
       </div>
     </section>
   </main>
+
+  <!-- Registo service worker per trasformare sito web in una PWA (Progressive Web App) -->
+    <script>
+      if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+      navigator.serviceWorker.register("../sw.js");
+    });
+  }
+  </script>
+
+  <script src="../hamburger.js"></script>
+
 </body>
 </html>

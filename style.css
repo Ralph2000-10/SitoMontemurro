@@ -71,6 +71,21 @@ body {
   font-size: 2.5rem;
 }
 
+
+/* Default: no break on desktop */
+.mobile-break {
+  display: inline;
+}
+
+/* On mobile: force a line break */
+@media (max-width: 768px) {
+  .mobile-break {
+    display: block;
+  }
+}
+
+
+
 .content h3 {
   text-align: center;
   font-size: 1.7rem;
@@ -184,5 +199,15 @@ body {
 
   .content {
     padding-top: 60px; /* avoid overlap with hamburger */
+  }
+}
+
+/* Ensure html and body cover the full screen on smaller devices */
+@media only screen and (max-width: 768px) {
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 }
